@@ -1,0 +1,93 @@
+<h1 style="text-align: center;margin-bottom: 10px;">This is a Add/Remove/Edit test</h1><br/>
+<div style="display: inline;">
+  <div style="display: inline-block;width: 50%;">
+    <h2>This is the phone shop</h2>
+    <p>There will be three items in the list</p>
+    <p>They are waited to be collected</p>
+    <div style="margin-left: 10px;" id="phones"></div>
+  </div>
+  <div style="display: inline-block;vertical-align: top">
+    <h2>This is the chart</h2>
+    <p>This is the place where you put your items</p>
+    <div id="chart"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  let totalPrice = 0;
+  const phones = [
+    {
+      name: 'iPhone 12 Pro Max',
+      price: 1299,
+      quantity: 0
+    },
+    {
+      name: 'Google pixel 5',
+      price: 1099,
+      quantity: 0
+    },
+    {
+      name: 'OnePlus 8',
+      price: 1100,
+      quantity: 0
+    },
+    {
+      name: 'Nokia 1',
+      price: 850,
+      quantity: 0
+    },
+    {
+      name: 'Samsung Galaxy',
+      price: 1800,
+      quantity: 0
+    }
+  ];
+
+  window.onload = function init() {
+    let html = '';
+    phones.forEach((phone, i) => {
+      html += `
+      <h3>${ phone.name }</h3>
+      <p>${ phone.price } AUD</p>
+      <button onclick="add(${ i })">Add item to chart</button>
+      `;
+    });
+    document.getElementById('phones').innerHTML = html;
+  };
+
+  function add(index) {
+    phones[index].quantity ++;
+    loadChart();
+  }
+
+  function minus(index) {
+    phones[index].quantity --;
+    loadChart();
+  }
+
+  function remove(index) {
+    phones[index].quantity = 0;
+    loadChart();
+  }
+
+  function loadChart() {console.log(phones);
+    let html = '';
+    phones.forEach((phone, i) => {
+      if (phone.quantity) {
+        html += `
+        <p>${ phone.name }</p>
+        <p>${ phone.price } AUD</p>
+        <div style="inline">
+          <button onclick="minus(${ i })" style="inline-block">-</button>
+          <span style="inline-block; margin: 0 10px;">${ phone.quantity }</span>
+          <button onclick="add(${ i })" style="inline-block">+</button>
+        </div>
+        <p>${ phone.quantity * phone.price } AUD</p>
+        <button onclick="remove(${ i })">Remove item</button>
+        `;
+      }
+    });
+    document.getElementById('chart').innerHTML = html;
+  }
+
+</script>

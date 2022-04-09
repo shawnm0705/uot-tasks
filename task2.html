@@ -1,0 +1,25 @@
+<script src="https://unpkg.com/vue@3"></script>
+
+<div id="app">
+  <img :src="imageUrls[imageIndex]"/>
+  <a style="margin-right: 10px;" href="javascript:void(0)" @click="previous">Previous</a>
+  <a href="javascript:void(0)" @click="next">Next</a>
+</div>
+
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        imageUrls: [
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn7fkGmlyAOeU5EjQb49NheuZlQCBXqW8MkhUaiQGcWpmjb4TtzTSLQPxRcnBc0RdICfM&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQKI2yBSdiEWLYkdfUhpRBgYM0ISYJ4CzNhc5wo2hIbAefdwxNktDm7K2n0gEoKkDV2n0&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgL_NKmKzSPnCgLchcr3x4cdWSivOeYwBoUCdvTcmgNy90zb9qiAm7AbnOrSpDN7RUDuk&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-IkdaxiSvG4Yba2BOu92oPuZWsnw6vRsoN3tSVzAErOrFg_EEm1GILjVObdSJNmOAXik&usqp=CAU'
+        ],
+        imageIndex: 0,
+        previous: () => this.imageIndex > 0 ? this.imageIndex -- : this.imageIndex = this.imageUrls.length - 1,
+        next: () => this.imageIndex < this.imageUrls.length - 1 ? this.imageIndex ++ : this.imageIndex = 0
+      }
+    }
+  }).mount('#app')
+</script>
